@@ -9,14 +9,26 @@ const app = express();
 const id = crypto.randomBytes(16).toString("hex");
 
 let phone = 'samsung s21';
-let priceMin = 500;
-let priceMax = 2000;
+let priceMin = undefined;
+let priceMax = 1500;
 let phoneQueriedOlx = phone.replace(/\s+/g, "-").toLowerCase();
-let priceFilter = `&search%5Bfilter_float_price:from%5D=${priceMin}&search%5Bfilter_float_price:to%5D=${priceMax}&view=list`
+var priceFilterOlx = `&search%5Bfilter_float_price:from%5D=${priceMin}&search%5Bfilter_float_price:to%5D=${priceMax}&view=list`
 var urlSearchOlx = `https://www.olx.ro/electronice-si-electrocasnice/telefoane-mobile/cluj-napoca/q-${phoneQueriedOlx}/?currency=RON&search%5Border%5D=filter_float_price:asc`;
-if(priceMin > 0 && priceMax > 0) {
-    var urlSearchOlx = `https://www.olx.ro/electronice-si-electrocasnice/telefoane-mobile/cluj-napoca/q-${phoneQueriedOlx}/?currency=RON&search%5Border%5D=filter_float_price:asc${priceFilter}`;
+//two apis for the normal and the filter
+if (priceMin > 0 && priceMax > 0) {
+    var urlSearchOlx = `https://www.olx.ro/electronice-si-electrocasnice/telefoane-mobile/cluj-napoca/q-${phoneQueriedOlx}/?currency=RON&search%5Border%5D=filter_float_price:asc${priceFilterOlx}`;
 }
+if (priceMin > 0 && priceMax === undefined) {
+var priceFilterOlx = `search%5Bfilter_float_price%3Afrom%5D=${priceMin}&search%5Border%5D=filter_float_price%3Aasc&view=list`;
+var urlSearchOlx = `https://www.olx.ro/electronice-si-electrocasnice/telefoane-mobile/cluj-napoca/q-${phoneQueriedOlx}/?currency=RON&${priceFilterOlx}`;
+}
+
+if (priceMin === undefined && priceMax > 0) {
+    var priceFilterOlx = `search%5Border%5D=filter_float_price:asc&search%5Bfilter_float_price:to%5D=${priceMax}&view=list`;
+    var urlSearchOlx = `https://www.olx.ro/electronice-si-electrocasnice/telefoane-mobile/cluj-napoca/q-${phoneQueriedOlx}/?currency=RON&${priceFilterOlx}`;
+    }
+
+
 axios(urlSearchOlx).then((response) => {
   try {
     const html = response.data;
