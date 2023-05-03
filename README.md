@@ -13,4 +13,4 @@ that will show me the data from the html in a structured way and I am pushing it
 After this process I can mimic the olx search from the API that I built, I repeat. \
 This app was made only so I can learn programming concepts \
 and will not be used for comercial needs or published anywhere without any consent of olx storing it's data. \
-This is not a forbidden technique, but I prefere to use it only for educating myself.
+This is not a forbidden technique, but I prefere to use it only for education.
