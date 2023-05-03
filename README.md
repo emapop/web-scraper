@@ -10,7 +10,5 @@ first the api is called and I retrive the olx search data page, \
 after I use cheerios to loop trought the DOM elements and find the correct css classes that will give me the html, \
 I am afterwards looping trough the html using inbuild methods and design the correct structure \
 that will show me the data from the html in a structured way and I am pushing it into an object. \
-After this process I can mimic the olx search from the API that I built, I repeat. \
-This app was made only so I can learn programming concepts \
-and will not be used for comercial needs or published anywhere without any consent of olx storing it's data. \
-This is not a forbidden technique, but I prefere to use it only for education.
+After this process I can mimic the olx search from the API that I built.
+# Enjoy!
